@@ -3,7 +3,8 @@ const bodyParser = require("body-parser")
 const cors = require("cors")
 const app = express()
 
-// 避免跨域問題，先設定任何請求都可以進入
+// 避免跨域問題，先設定任何請求都可以進入 *,
+// origin: "http://localhost:8081"
 const corsOptions = {
   origin: "*"
 }
@@ -25,3 +26,6 @@ const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
   console.log(`listening on port: ${PORT}!`)
 })
+
+const db = require("./app/models");
+db.sequelize.sync();
