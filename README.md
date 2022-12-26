@@ -1,6 +1,6 @@
 # attendance-systems
-ALPHA Camp | 考勤打卡專案 | 前後端分離
 
+ALPHA Camp | 考勤打卡專案 | 前後端分離
 
 # Feature
 
@@ -11,19 +11,20 @@ ALPHA Camp | 考勤打卡專案 | 前後端分離
   - 使用者登入密碼錯誤 5 次上鎖
   - 註冊時，account 和 email 不能與其他人重複，若有重複會跳出錯誤提示
   - 編輯時，account 和 email 不能與其他人重複，若有重複會跳出錯誤提示
-  
 - User
   - 使用者有按鈕可以打卡
   - 使用者能瀏覽自己的打卡記錄
-  
 - Admin
+
   - 管理者可以瀏覽站內所有的使用者清單
   - 管理者可以瀏覽
 
 - calendar
+
   - 出缺勤僅計算工作日(根據台灣行事曆)
 
 - Attendance management
+
   - 上班打卡一次，下班打卡一次，未滿 8 小時為缺勤
     - 第一次打卡是上班時間
     - 當天第二次打卡當成下班時間，若多次打卡，最後一次打卡當成下班時間
@@ -45,6 +46,7 @@ ALPHA Camp | 考勤打卡專案 | 前後端分離
 # Environment settings
 
 1. Install Node.js [reference](https://radixweb.com/blog/installing-npm-and-nodejs-on-windows-and-mac)
+
 ```
   npm i node
   node -v
@@ -52,66 +54,79 @@ ALPHA Camp | 考勤打卡專案 | 前後端分離
 ```
 
 2. MySQL
-  
-  Downloads MySQL and install [Downloads](https://dev.mysql.com/downloads/mysql/)
-  
-  Setting MySQL [reference](https://siddharam.com.tw/post/20190807/)
-```  
+
+Downloads MySQL and install [Downloads](https://dev.mysql.com/downloads/mysql/)
+
+Setting MySQL [reference](https://siddharam.com.tw/post/20190807/)
+
+```
   create database as;
 ```
 
 3. windows environment need install file
+
 ```shell
   npm install cross-env
 ```
 
-
 ## Getting Start
 
 1. git clone the project
+
 ```shell
   git clone https://github.com/elliotcs30/attendance-systems.git
 ```
 
 2. Install the required dependencies
+
 ```shell
-  npm install
+  $ npm install
 ```
 
 3. Set environment variables in .env file according to .env.example
+
 ```shell
   touch .env
 ```
 
-4. Seed create your database 
+4. Seed create your database
+
 ```shell
-  npm run dbinit
-  npm run seedinit
+  $ npm run dbinit
+  $ npm run seedinit
 ```
 
-5. Start the server
+5. Start the front end server
+
 ```shell
-  npm run start         // for mac
-  npm run start-windows // for windows
+  $ cd front-end
+  $ npm run serve
 ```
 
-6. Execute successfully if seeing following message
+6. Start the back end server
+
+```shell
+  $ npm run start         // for mac
+  $ npm run start-windows // for windows
+```
+
+7. Execute successfully if seeing following message
+
 ```shell
   Example app listening on port 3000!
 ```
-
 
 ### 測試帳號：
 
 可使用下面 2 組測試帳號來執行專案：
 
-|   role  | account | password |
-| ------- | ------- | -------- |
-|  admin  |  admin  | tiadmin |
-|   user  |  user1  | titaner |
+| role  | account | password |
+| ----- | ------- | -------- |
+| admin | admin   | tiadmin  |
+| user  | user1   | titaner  |
 
 ### 開發者
 
-|    name    | account |
-| ---------- | ------- | 
+| name   | account                       |
+| ------ | ----------------------------- |
 | Elliot | https://github.com/elliotcs30 |
