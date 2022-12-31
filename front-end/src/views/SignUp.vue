@@ -1,112 +1,50 @@
 <template>
   <div class="container py-5">
-    <img src="../assets/titanlogo.png" alt="titan logo">
-    <form 
-      class="w-100" 
-      @submit.prevent.stop="handleSubmit"
-    >
+    <form class="w-100" @submit.stop.prevent="handleSubmit">
       <div class="text-center mb-4">
         <h1 class="h3 mb-3 font-weight-normal">
           Sign Up
         </h1>
       </div>
 
-      <div class="form-label-group mb-3">
-        <label for="account">Account</label>
-        <input 
-          id="account"
-          v-model="account"
-          name="account"
-          type="text"
-          class="form-control"
-          placeholder="Account"
-          autocomplete="account"
-          required
-          autofocus
-        >
-      </div>
-
-      <div class="form-label-group mb-3">
+      <div class="form-label-group mb-2">
         <label for="name">Name</label>
-        <input 
-          id="name"
-          v-model="name"
-          name="name"
-          type="text"
-          class="form-control"
-          placeholder="Name"
-          autocomplete="name"
-          required
-          autofocus
-        >
+        <input id="name" v-model="name" name="name" type="text" class="form-control" placeholder="name"
+          autocomplete="username" required autofocus>
       </div>
 
-      <div class="form-field email-field">
-          <label for="email">Email</label>
-          <input
-            id="email"
-            v-model="email"
-            name="email"
-            type="email"
-            class="form-control"
-            placeholder="Email"
-            autocomplete="email"
-            required
-          />
-          <div class="alert-msg">
-            <span class="msg">Email已重複註冊！</span>
-          </div>
-          <div class="alert-msg">
-            <span class="msg">Email格式錯誤</span>
-          </div>
-        </div>
-
-      <div class="form-label-group mb-3">
-        <label for="password">密碼</label>
-        <input 
-          id="password"
-          v-model="password"
-          name="password"
-          type="password"
-          class="form-control"
-          placeholder="Password"
-          autocomplete="current-password"
-          required
-        >
+      <div class="form-label-group mb-2">
+        <label for="email">Email</label>
+        <input id="email" v-model="email" name="email" type="email" class="form-control" placeholder="email"
+          autocomplete="email" required>
       </div>
 
       <div class="form-label-group mb-3">
-        <label for="password-check">密碼確認</label>
-        <input 
-          id="password-check"
-          v-model="passwordCheck"
-          name="password-check"
-          type="password"
-          class="form-control"
-          placeholder="Check Password"
-          autocomplete="password"
-          required
-          autofocus
-        >
+        <label for="password">Password</label>
+        <input id="password" v-model="password" name="password" type="password" class="form-control"
+          placeholder="Password" autocomplete="new-password" required>
       </div>
 
-      <button
-        class="btn btn-lg btn-primary btn-block mb-3"
-        type="submit"
-      >
+      <div class="form-label-group mb-3">
+        <label for="password-check">Password Check</label>
+        <input id="password-check" v-model="passwordCheck" name="passwordCheck" type="password" class="form-control"
+          placeholder="Password" autocomplete="new-password" required>
+      </div>
+
+      <button class="btn btn-lg btn-primary btn-block mb-3" type="submit">
         Submit
       </button>
 
       <div class="text-center mb-3">
         <p>
-          <router-link to="/signup">
-            Sign Up
+          <router-link to="/signin">
+            Sign In
           </router-link>
         </p>
       </div>
 
       <p class="mt-5 mb-3 text-muted text-center">
-        &copy; 2022-2023
+        © 2017-2018
       </p>
     </form>
   </div>
@@ -115,22 +53,20 @@
 <script>
 export default {
   data() {
-    return { // component 需要使用 function return 來回傳資料
-      account: '',
+    return {
       name: '',
       email: '',
       password: '',
-      passwordCheck: '',
+      passwordCheck: ''
     }
   },
   methods: {
     handleSubmit() {
       const data = JSON.stringify({
-        account: this.account,
         name: this.name,
         email: this.email,
         password: this.password,
-        passwordCheck: this.passwordCheck,
+        passwordCheck: this.passwordCheck
       })
 
       // TODO: 向後端驗證使用者登入資訊是否合法
