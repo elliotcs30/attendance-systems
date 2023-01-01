@@ -34,12 +34,12 @@
           {{ attendance.name }}
         </td>
         <td class="d-flex justify-content-between">
-          <a
-            href="#"
+          <router-link
+            :to="{ name: 'admin-attendance', params: { id: attendance.id }}"
             class="btn btn-link"
           >
             Show
-          </a>
+        </router-link>
 
           <a
             href="#"
