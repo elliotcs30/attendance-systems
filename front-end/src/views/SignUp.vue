@@ -39,7 +39,7 @@
       <div class="text-center mb-3">
         <p>
           <router-link to="/signin">
-            Sign In
+            Cancel
           </router-link>
         </p>
       </div>
