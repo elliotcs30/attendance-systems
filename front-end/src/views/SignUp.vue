@@ -1,5 +1,6 @@
 <template>
   <div class="container py-5">
+    <img src="../assets/titanlogo.png" alt="titan logo">
     <form class="w-100" @submit.stop.prevent="handleSubmit">
       <div class="text-center mb-4">
         <h1 class="h3 mb-3 font-weight-normal">
@@ -44,7 +45,7 @@
       </div>
 
       <p class="mt-5 mb-3 text-muted text-center">
-        © 2017-2018
+        &copy; 2022-2023
       </p>
     </form>
   </div>
