@@ -52,6 +52,10 @@
           <router-link to="/signup">
             Sign Up
           </router-link>
+          ．
+          <router-link to="/admin/signin">
+            Admin Sign In
+          </router-link>
         </p>
       </div>
 
