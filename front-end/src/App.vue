@@ -1,5 +1,6 @@
 <template>
   <div id="titan-attendance-system">
+    <navbar-view />
     <router-view />
   </div>
 </template>
@@ -7,8 +8,13 @@
 <script>
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import NavbarView from './components/NavbarView.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'navbar-view': NavbarView,
+  }
 }
 </script>
 
