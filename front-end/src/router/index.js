@@ -17,6 +17,11 @@ const routes = [
     component: () => import('../views/SignUp.vue') // 動態載入: 若每個使用者不一定會進入的頁面，可以設為動態載入
   },
   {
+    path: '/admin/signin',
+    name: 'admin-sign-in',
+    component: () => import('../views/AdminSignIn.vue')
+  },
+  {
     path: '/:catchAll(.*)', // 所有的路由都無法匹配，就會返回 Not Found 這個頁面
     name: 'not-found',      // Vue 元件的名稱
     component: NotFound     // 透過 name 屬性來指派路由
