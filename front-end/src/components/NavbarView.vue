@@ -26,6 +26,7 @@
       <div class="ml-auto d-flex align-items-center">
         <!-- user is admin -->
         <router-link
+          v-if="currentUser.isAdmin"
           to="#"
           class="text-white mr-3"
         >
@@ -33,19 +34,15 @@
         </router-link>
 
         <!-- user is login -->
-        <router-link
-          to="#"
-          class="text-white mr-3"
-        >
-          使用者 您好
-        </router-link>
-
-        <button
-          type="button"
-          class="btn btn-sm btn-outline-success my-2 my-sm-0"
-        >
-          登出
-        </button>
+        <template v-if="isAuthenticated">
+          <router-link to="#" class="text-white mr-3">
+            {{ currentUser.name || '使用者' }} 您好
+          </router-link>
+          
+          <button type="button" class="btn btn-sm btn-outline-success my-2 my-sm-0">
+            登出
+          </button>
+        </template>
       </div>
     </div>
   </nav>
