@@ -41,7 +41,7 @@
 import { computed, ref, onMounted, watch } from 'vue'
 import { useGeolocation } from './../useGeolocation'
 import { Loader } from '@googlemaps/js-api-loader'
-const GOOGLE_MAPS_API_KEY = 'Your Google Maps API'
+const GOOGLE_MAPS_API_KEY = process.env.VUE_APP_Google_Maps_API_Key
 export default {
   name: 'App',
   setup() {
