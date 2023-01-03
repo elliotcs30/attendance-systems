@@ -2,7 +2,8 @@ const express = require('express')
 const handlebars = require('express-handlebars')
 const app = express()
 const port = process.env.PORT || 3000
-const db = require('./models') // 引入資料庫
+
+app.use(express.urlencoded({ extended: true }))
 
 const routes = require('./routes')
 
