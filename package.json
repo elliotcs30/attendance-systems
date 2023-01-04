@@ -9,12 +9,13 @@
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.15.1",
-    "axios": "^1.2.2",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "core-js": "^3.8.3",
     "jquery": "^3.4.1",
     "moment": "^2.29.4",
     "popper.js": "^1.16.0",
+    "sweetalert2": "^9.8.2",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vue3-google-map": "^0.15.0"
