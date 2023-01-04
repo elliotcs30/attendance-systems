@@ -43,6 +43,7 @@
       <button
         class="btn btn-lg btn-primary btn-block mb-3"
         type="submit"
+        :disabled="isProcessing"
       >
         Submit
       </button>
@@ -74,7 +75,8 @@ export default {
   data () {
     return { // component 需要使用 function return 來回傳資料
       account: '',
-      password: ''
+      password: '',
+      isProcessing: false
     }
   },
   methods: {
@@ -88,6 +90,8 @@ export default {
         })
         return
       }
+
+      this.isProcessing = true
 
       authorizationAPI.signIn({
         account: this.account,
@@ -115,6 +119,10 @@ export default {
           icon: 'warning',
           title: '請確認您輸入的帳號或密碼'
         })
+
+        // 因為登入失敗，所以要把按鈕狀態還原
+        this.isProcessing = false
+        
         console.log(error)
       })
     }
