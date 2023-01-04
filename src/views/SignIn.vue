@@ -12,14 +12,14 @@
       </div>
 
       <div class="form-label-group mb-2">
-        <label for="email">Email</label>
+        <label for="account">Account</label>
         <input 
-          id="email"
-          v-model="email"
-          name="email"
+          id="account"
+          v-model="account"
+          name="account"
           type="text"
           class="form-control"
-          placeholder="Email"
+          placeholder="Account"
           autocomplete="username"
           required
           autofocus
@@ -67,6 +67,8 @@
 </template>
 
 <script>
+import authorizationAPI from './../apis/authorization'
+
 export default {
   data () {
     return { // component 需要使用 function return 來回傳資料
@@ -76,13 +78,18 @@ export default {
   },
   methods: {
     handleSubmit () {
-      const data = JSON.stringify({
-        email: this.email,
+      authorizationAPI.signIn({
+        account: this.account,
         password: this.password
-      })
+      }).then(response => {
+        // TODO: 取得 API 請求後的資料
+        const { data } = response
+        // 將 token 存放在 localStorage 內
+        localStorage.setItem('token', data.token)
 
-      // TODO: 向後端驗證使用者登入資訊是否合法
-      console.log('data', data)
+        // 成功登入後轉址到打卡首頁
+        this.$router.push('/attendances')
+      })
     }
   }
 }
