@@ -55,6 +55,7 @@
 export default {
   data() {
     return {
+      account: '',
       name: '',
       email: '',
       password: '',
@@ -64,6 +65,7 @@ export default {
   methods: {
     handleSubmit() {
       const data = JSON.stringify({
+        account: this.account,
         name: this.name,
         email: this.email,
         password: this.password,

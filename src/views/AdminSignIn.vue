@@ -9,8 +9,8 @@
       </div>
 
       <div class="form-label-group mb-2">
-        <label for="email">Email</label>
-        <input id="email" v-model="email" name="email" type="text" class="form-control" placeholder="Email"
+        <label for="account">Account</label>
+        <input id="account" v-model="account" name="account" type="text" class="form-control" placeholder="Account"
           autocomplete="username" required autofocus>
       </div>
 
@@ -47,14 +47,14 @@
 export default {
   data() {
     return { // component 需要使用 function return 來回傳資料
-      email: '',
+      account: '',
       password: ''
     }
   },
   methods: {
     handleSubmit() {
       const data = JSON.stringify({
-        email: this.email,
+        account: this.account,
         password: this.password
       })
 
