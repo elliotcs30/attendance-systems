@@ -80,27 +80,30 @@ export default {
     }
   },
   methods: {
-    handleSubmit () {
-      // 如果 account 或 password 為空，則使用 Toast 提示
-      // 然後 return 不繼續往後執行
-      if (!this.account || !this.password) {
-        Toast.fire({
-          icon: 'warning',
-          title: '請填入 account 和 password'
+    async handleSubmit () {
+      try {
+        // 如果 account 或 password 為空，則使用 Toast 提示
+        // 然後 return 不繼續往後執行
+        if (!this.account || !this.password) {
+          Toast.fire({
+            icon: 'warning',
+            title: '請填入 account 和 password'
+          })
+          return
+        }
+        this.isProcessing = true
+
+        // 使用 authorizationAPI 的 signIn 方法
+        // 並且帶入使用者填寫的 account 和 password
+        const response = await authorizationAPI.signIn({
+          account: this.account,
+          password: this.password
         })
-        return
-      }
 
-      this.isProcessing = true
-
-      authorizationAPI.signIn({
-        account: this.account,
-        password: this.password
-      }).then(response => {
         // TODO: 取得 API 請求後的資料
         const { data } = response
 
-        if (data.status === 'error' || data.token === undefined) {
+        if (data.status !== 'success' || data.token === undefined) {
           throw new Error(data.message)
         }
 
@@ -109,7 +112,7 @@ export default {
 
         // 成功登入後轉址到打卡首頁
         this.$router.push('/attendances')
-      }).catch(error => {
+      } catch (error) {
         // 將帳號、密碼欄位清空，增加惡意人士破解難度
         this.account = ''
         this.password = ''
@@ -122,9 +125,7 @@ export default {
 
         // 因為登入失敗，所以要把按鈕狀態還原
         this.isProcessing = false
-        
-        console.log(error)
-      })
+      }
     }
   }
 }
