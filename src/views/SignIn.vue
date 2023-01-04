@@ -96,20 +96,18 @@ export default {
         // TODO: 取得 API 請求後的資料
         const { data } = response
 
-        if (data.status === 'error') {
+        if (data.status === 'error' || data.token === undefined) {
           throw new Error(data.message)
         }
 
-        if (data.token === undefined) {
-          throw new Error(data.message)
-        }
         // 將 token 存放在 localStorage 內
         localStorage.setItem('token', data.token)
 
         // 成功登入後轉址到打卡首頁
         this.$router.push('/attendances')
       }).catch(error => {
-        // 將密碼欄位清空
+        // 將帳號、密碼欄位清空，增加惡意人士破解難度
+        this.account = ''
         this.password = ''
 
         // 顯示錯誤提示
