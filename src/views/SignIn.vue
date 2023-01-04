@@ -68,27 +68,56 @@
 
 <script>
 import authorizationAPI from './../apis/authorization'
+import { Toast } from './../utils/helpers'
 
 export default {
   data () {
     return { // component 需要使用 function return 來回傳資料
-      email: '',
+      account: '',
       password: ''
     }
   },
   methods: {
     handleSubmit () {
+      // 如果 email 或 password 為空，則使用 Toast 提示
+      // 然後 return 不繼續往後執行
+      if (!this.account || !this.password) {
+        Toast.fire({
+          icon: 'warning',
+          title: '請填入 account 和 password'
+        })
+        return
+      }
+
       authorizationAPI.signIn({
         account: this.account,
         password: this.password
       }).then(response => {
         // TODO: 取得 API 請求後的資料
         const { data } = response
+
+        if (data.status === 'error') {
+          throw new Error(data.message)
+        }
+
+        if (data.token === undefined) {
+          throw new Error(data.message)
+        }
         // 將 token 存放在 localStorage 內
         localStorage.setItem('token', data.token)
 
         // 成功登入後轉址到打卡首頁
         this.$router.push('/attendances')
+      }).catch(error => {
+        // 將密碼欄位清空
+        this.password = ''
+
+        // 顯示錯誤提示
+        Toast.fire({
+          icon: 'warning',
+          title: '請確認您輸入的帳號或密碼'
+        })
+        console.log(error)
       })
     }
   }
