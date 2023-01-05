@@ -3,11 +3,9 @@
 1. Fork
 2. git clone
 
-## 初始化
-### Initialize
+### 初始化
 ```
-git remote add upstream https://github.com/elliotcs30/attendance-systems.git
-# 建立上游連線
+cd attendance-systems
 npm install
 ```
 
