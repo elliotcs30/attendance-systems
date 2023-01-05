@@ -6,8 +6,8 @@ const attendanceController = require('../../controllers/apis/attendance-controll
 const userController = require('../../controllers/apis/user-controller')
 const { authenticated } = require('../../middleware/auth')
 const { generalErrorHandler } = require('../../middleware/error-handler')
+router.post('/signin', passport.authenticate('local', { session: false }), userController.signIn)
 
-router.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }), userController.signIn)
 router.get('/logout', userController.logout)
 router.get('/attendances', authenticated, attendanceController.getAttendances)
 router.get('/users', userController.getUsers)
