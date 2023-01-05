@@ -1,7 +1,10 @@
 <template>
   <div id="titan-attendance-system">
-    <navbar-view />
-    <router-view />
+    <Navbar />
+    <main role="main" class="mt-5 bg-white">
+      <navbar-view />
+      <router-view />
+    </main>
   </div>
 </template>
 

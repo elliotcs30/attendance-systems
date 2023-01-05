@@ -35,7 +35,10 @@
 
         <!-- user is login -->
         <template v-if="isAuthenticated">
-          <router-link to="#" class="text-white mr-3">
+          <router-link 
+            to="#" 
+            class="text-white mr-3"
+          >
             {{ currentUser.name || '使用者' }} 您好
           </router-link>
           
@@ -53,7 +56,8 @@
 const dummyUser = {
   currentUser: {
     id: 1,
-    name: '管理者',
+    account: 'admin',
+    name: 'admin',
     email: 'root@example.com',
     image: 'https://i.pravatar.cc/300',
     isAdmin: true
@@ -67,6 +71,7 @@ export default {
     return {
       currentUser: {
         id: -1,
+        account: '',
         name: '',
         email: '',
         image: '',
