@@ -3,6 +3,7 @@
 ALPHA Camp | 考勤打卡專案 | 前後端分離
 
 ## Live Demo
+[Demo Link](https://elliotcs30.github.io/attendance-systems/#/signin)
 
 ![Screen Shot 2023-01-04 at 16 34 55](https://user-images.githubusercontent.com/103249772/210516065-209b9a3c-0090-4065-8955-902597a0a3c6.png)
 
@@ -64,7 +65,7 @@ Downloads MySQL and install [Downloads](https://dev.mysql.com/downloads/mysql/)
 Setting MySQL [reference](https://siddharam.com.tw/post/20190807/)
 
 ```
-  create database as;
+  create database attendance_system;
 ```
 
 3. windows environment need install file
@@ -103,7 +104,7 @@ Setting MySQL [reference](https://siddharam.com.tw/post/20190807/)
 5. Start the front end server
 
 ```shell
-  $ cd front-end
+  $ cd attendance-systems
   $ npm run serve
 ```
 
