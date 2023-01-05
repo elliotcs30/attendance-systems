@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/',
     name: 'root',
-    redirect: '/signin'
+    redirect: '/attendances'
   },
   {
     path: '/signin',
@@ -60,6 +60,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
+  linkExactActiveClass: 'active', // 當前選擇的頁籤
   routes
 })
 

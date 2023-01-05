@@ -16,6 +16,7 @@
     "moment": "^2.29.4",
     "popper.js": "^1.16.0",
     "sweetalert2": "^9.8.2",
+    "uuid": "^8.3.2",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vue3-google-map": "^0.15.0"
