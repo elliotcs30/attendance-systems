@@ -4,6 +4,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express')
 const handlebars = require('express-handlebars')
+const bodyParser = require('body-parser')
+
 const flash = require('connect-flash')
 const session = require('express-session')
 const cors = require('cors')
@@ -23,6 +25,9 @@ const { pages, apis } = require('./routes')
 app.engine('hbs', handlebars({ extname: '.hbs' }))
 // 設定使用 Handlebars 做為樣板引擎
 app.set('view engine', 'hbs')
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 app.use(session({ secret: SESSION_SECRET, resave: false, saveUninitialized: false }))
 
