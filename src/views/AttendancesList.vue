@@ -1,5 +1,7 @@
 <template>
   <div class="container py-5">
+    <!-- 使用 NavTabs 元件 -->
+    <NavTabs />
     <h1 class="mt-5">
       首頁 - 出勤打卡頁面
     </h1>
@@ -36,8 +38,8 @@
   </div>
 </template>
 
-
 <script>
+import NavTabs from './../components/NavTabs'
 import { computed, ref, onMounted, watch } from 'vue'
 import { useGeolocation } from './../useGeolocation'
 import { Loader } from '@googlemaps/js-api-loader'
@@ -98,6 +100,9 @@ export default {
         : haversineDistance(currPos.value, otherPos.value)
     )
     return { currPos, otherPos, distance, mapDiv }
+  },
+  components: {
+    NavTabs
   }
 }
 </script>

@@ -28,18 +28,13 @@ export default {
         },
         {
           id: uuidv4(),
-          title: '最新打卡動態',
+          title: '最新打卡紀錄',
           path: '/attendances/feeds'
         },
         {
           id: uuidv4(),
-          title: 'TOP 10 打卡記錄',
-          path: '//attendances/top'
-        },
-        {
-          id: uuidv4(),
-          title: '最佳員工',
-          path: '/users/top'
+          title: '員工資料',
+          path: '/users/info'
         }
       ]
     }
