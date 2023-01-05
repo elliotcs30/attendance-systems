@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
+const admin = require('./modules/admin')
 const passport = require('../../config/passport')
-const admin = require('./../pages/modules/admin')
 
 const attendanceController = require('../../controllers/apis/attendance-controller')
 const userController = require('../../controllers/apis/user-controller')
