@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs')
-const db = require('../../models')
-const { User } = db
+const { User } = require('../../models')
+
+const userServices = require('../../services/user-services')
+
 const userController = {
   signUpPage: (req, res) => {
     res.render('signup')
@@ -37,18 +39,8 @@ const userController = {
     req.logout()
     res.redirect('/signin')
   },
-  getUsers: (req, res) => {
-    Promise.all([
-      User.findAndCountAll({
-        nest: true,
-        raw: true
-      })
-    ]).then(([users]) => {
-      const data = users.rows.map(r => ({ ...r }))
-      return res.json({
-        users: data
-      })
-    })
+  getUsers: (req, res, next) => {
+    userServices.getUsers(req, (err, data) => err ? next(err) : res.render('users', data))
   }
 }
 

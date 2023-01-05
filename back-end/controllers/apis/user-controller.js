@@ -1,8 +1,11 @@
 const bcrypt = require('bcryptjs')
 const { User } = require('../../models')
+
+const userServices = require('../../services/user-services')
+
 const userController = {
   signUpPage: (req, res) => {
-    res.rander('signup')
+    res.render('signup')
   },
   signUp: (req, res, next) => {
     // 如果兩次輸入的密碼不同, 就建立一個 Error 物件並拋出
@@ -36,18 +39,8 @@ const userController = {
     req.logout()
     res.redirect('/signin')
   },
-  getUsers: (req, res) => {
-    Promise.all([
-      User.findAndCountAll({
-        nest: true,
-        raw: true
-      })
-    ]).then(([users]) => {
-      const data = users.rows.map(r => ({ ...r }))
-      return res.json({
-        users: data
-      })
-    })
+  getUsers: (req, res, next) => {
+    userServices.getUsers(req, (err, data) => err ? next(err) : res.json(data))
   }
 }
 module.exports = userController
