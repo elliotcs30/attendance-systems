@@ -4,8 +4,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express')
 const handlebars = require('express-handlebars')
-const bodyParser = require('body-parser')
-
 const flash = require('connect-flash')
 const session = require('express-session')
 const cors = require('cors')
@@ -21,13 +19,13 @@ app.use(express.urlencoded({ extended: true }))
 
 const { pages, apis } = require('./routes')
 
+// bodyParser 已加入 express 套件中, 因此可以直接使用
+app.use(express.json())
+
 // 註冊 Handlebars 樣板引擎，並指定副檔名為 .hbs
 app.engine('hbs', handlebars({ extname: '.hbs' }))
 // 設定使用 Handlebars 做為樣板引擎
 app.set('view engine', 'hbs')
-
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
 
 app.use(session({ secret: SESSION_SECRET, resave: false, saveUninitialized: false }))
 
