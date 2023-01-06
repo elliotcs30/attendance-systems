@@ -1,5 +1,5 @@
 <template>
-  <div id="titan-attendance-system">
+  <div id="App">
     <Navbar />
     <main role="main" class="mt-5 bg-white">
       <navbar-view />
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style>
-#app {
+#App {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
