@@ -103,12 +103,12 @@ export default {
         // TODO: 取得 API 請求後的資料
         const { data } = response
 
-        if (data.status !== 'success' || data.token === undefined) {
+        if (data.status !== 'success') {
           throw new Error(data.message)
         }
 
         // 將 token 存放在 localStorage 內
-        localStorage.setItem('token', data.token)
+        localStorage.setItem('token', data.data.token)
 
         // 成功登入後轉址到打卡首頁
         this.$router.push('/attendances')
