@@ -102,6 +102,7 @@ export default {
 
         // TODO: 取得 API 請求後的資料
         const { data } = response
+        const userInfo = data.data.user
 
         if (data.status !== 'success') {
           throw new Error(data.message)
@@ -109,6 +110,15 @@ export default {
 
         // 將 token 存放在 localStorage 內
         localStorage.setItem('token', data.data.token)
+        // 若不使用 JSON.stringify() 會得到[object, object]
+        // 所以要先把資料轉為 JSON 格式的字串
+        localStorage.setItem('userInfo', JSON.stringify(userInfo))
+
+        // 顯示成功提示
+        Toast.fire({
+          icon: 'success',
+          title: '登入成功'
+        })
 
         // 成功登入後轉址到打卡首頁
         this.$router.push('/attendances')
