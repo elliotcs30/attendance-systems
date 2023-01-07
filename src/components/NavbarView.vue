@@ -42,7 +42,11 @@
             {{ currentUser.name || '使用者' }} 您好
           </router-link>
           
-          <button type="button" class="btn btn-sm btn-outline-success my-2 my-sm-0">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-success my-2 my-sm-0"
+            @click="logout()"
+          >
             登出
           </button>
         </template>
@@ -52,6 +56,8 @@
 </template>
 
 <script>
+import { Toast } from './../utils/helpers'
+
 // seed data
 const dummyUser = {
   currentUser: {
@@ -90,6 +96,29 @@ export default {
         ...dummyUser.currentUser
       }
       this.isAuthenticated = dummyUser.isAuthenticated
+    },
+    logout() {
+      if (localStorage.getItem('token') === null) {
+        // 顯示警告提示
+        Toast.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: '請先登入系統!',
+        })
+        return
+      }
+
+      // 清除資料
+      localStorage.clear()
+
+      // 顯示成功提示
+      Toast.fire({
+        icon: 'success',
+        title: '已登出系統',
+      })
+
+      // 成功登入後轉址到打卡首頁
+      this.$router.push('/signin')
     }
   }
 }
