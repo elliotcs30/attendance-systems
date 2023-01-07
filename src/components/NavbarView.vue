@@ -60,14 +60,7 @@ import { Toast } from './../utils/helpers'
 
 // seed data
 const dummyUser = {
-  currentUser: {
-    id: 1,
-    account: 'admin',
-    name: 'admin',
-    email: 'root@example.com',
-    image: 'https://i.pravatar.cc/300',
-    isAdmin: true
-  },
+  currentUser: JSON.parse(localStorage.getItem('userInfo')),
   isAuthenticated: true
 }
 
