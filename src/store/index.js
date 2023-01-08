@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import userAPI from './../apis/users'
+import usersAPI from './../apis/users'
 
 export default createStore({
   state: {
@@ -35,7 +35,7 @@ export default createStore({
     async fetchCurrentUser ({ commit }) {
       try {
         // call usersAPI.getCurrentUser() 方法, 並將 response 顯示出來
-        const { data } = await userAPI.getCurrentUser()
+        const { data } = await usersAPI.getCurrentUser()
         const { id, name, email, description, image, isAdmin } = data
 
         commit('setCurrentUser', {
