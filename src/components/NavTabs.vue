@@ -34,7 +34,7 @@ export default {
         {
           id: uuidv4(),
           title: '員工資料',
-          path: '/users/info'
+          path: '/users'
         }
       ]
     }
