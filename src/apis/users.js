@@ -16,5 +16,10 @@ export default {
     return apiHelper.get('/users/top', {
       headers: { Authorization: `Bearer ${getToken()}` }
     })
+  },
+  addAttendance ({ formData }) {
+    return apiHelper.post('/attendance', formData, {
+      headers: { Authorization: `Bearer ${getToken()}` }
+    })
   }
 }

@@ -10,6 +10,8 @@ const { apiErrorHandler } = require('../../middleware/error-handler')
 
 router.use('/admin', authenticated, authenticatedAdmin, admin)
 router.get('/attendances', authenticated, attendanceController.getAttendances)
+router.get('/attendance', authenticated, attendanceController.getAttendance)
+router.post('/attendance', authenticated, attendanceController.postAttendance)
 
 // JWT signin
 router.post('/signin', passport.authenticate('local', { session: false }), userController.signIn)

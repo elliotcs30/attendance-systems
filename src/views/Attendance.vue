@@ -28,13 +28,21 @@
     </div>
     <div ref="mapDiv" style="width: 100%; height: 50vh;" />
     
-    <button 
+    <button
+      v-if="attendance.isLeaveWork"
+      type="button"
+      class="btn btn-danger btn-border favorite mr-2"
+      @click.stop.prevent="leaveWork()">
+      下班卡打
+    </button>
+    <button
+      v-else
       type="button"
       class="btn btn-warning"
       style="margin-top: 20px;"
-      v-on:click="addAttendanceRecord()"
+      @click.stop.prevent="addAttendance()"
     >
-      上班打卡
+      上班卡打
     </button>
 
   </div>
@@ -46,7 +54,8 @@ import { computed, ref, onMounted, watch } from 'vue'
 import { useGeolocation } from './../useGeolocation'
 import { Loader } from '@googlemaps/js-api-loader'
 const GOOGLE_MAPS_API_KEY = process.env.VUE_APP_Google_Maps_API_Key
-import authorizationAPI from './../apis/authorization'
+import attendancesAPI from './../apis/attendances'
+import { mapState } from 'vuex'
 import { Toast } from './../utils/helpers'
 
 export default {
@@ -111,59 +120,50 @@ export default {
   },
   data() {
     return { // component 需要使用 function return 來回傳資料
-      account: '',
-      name: '',
-      work_hours: '',
-      created_at: '', 
-      updated_at: '',
-      isProcessing: false
+      attendance: {
+        account: '',
+        name: '',
+        created_at: '',
+        updated_at: '',
+        isProcessing: false
+      },
     }
   },
-
+  computed: {
+    ...mapState(['currentUser'])
+  },
   methods: {
-    async addAttendanceRecord() {
+    // 改用 async/await 語法
+    async addAttendance() {
       try {
-        // 使用 authorizationAPI 的 signIn 方法
-        // 並且帶入使用者填寫的 account 和 password
-        const response = await authorizationAPI.Attendance({
-          account: this.account,
-          name: this.name,
-        })
+        // 抓取當前的使用者
+        const formData = JSON.parse(localStorage.getItem('userInfo'))
 
-        // TODO: 取得 API 請求後的資料
-        const { data } = response
+        // 使用撰寫好的 addAttendance 方法去呼叫 API，並取得回傳內容
+        const { data } = await attendancesAPI.addAttendance({ formData })
 
-        if (data.status !== 'success') {
+        // 若請求過程有錯，則進到錯誤處理
+        if (data.status === 'error') {
           throw new Error(data.message)
         }
 
-        // 顯示成功提示
         Toast.fire({
           icon: 'success',
-          title: '打卡成功'
+          title: '打卡成功，祝你有美好的一天'
         })
-
       } catch (error) {
-        // 將欄位清空
-        this.account = ''
-        this.name = ''
-        this.tel = ''
-        this.email = ''
-        this.password = ''
-        this.passwordCheck = ''
-        this.description = ''
-        this.image = ''
-
-        // 顯示錯誤提示
+        // 請求失敗的話則跳出錯誤提示
         Toast.fire({
-          icon: 'warning',
-          title: '請確認account、password 和 email 欄位是否有填寫！'
+          icon: 'error',
+          title: '無法打卡，請稍後再試'
         })
-
-        // 因為註冊失敗，所以要把按鈕狀態還原
-        this.isProcessing = false
       }
     }
+  },
+  beforeRouteUpdate (to, from, next) {
+    const { id: AttendanceId } = to.params
+    this.fetchAttendance( AttendanceId )
+    next()
   }
 }
 </script>

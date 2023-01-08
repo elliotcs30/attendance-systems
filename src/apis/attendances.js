@@ -7,5 +7,15 @@ export default {
     return apiHelper.get(`/attendances?${searchParams.toString()}`, {
       headers: { Authorization: `Bearer ${getToken()}` }
     })
+  },
+  getAttendance ({ attendanceId }) {
+    return apiHelper.get(`/attendances/${ attendanceId }`, {
+      headers: { Authorization: `Bearer ${getToken()}`}
+    })
+  },
+  addAttendance ({ formData }) {
+    return apiHelper.post('/attendance', formData, {
+      headers: { Authorization: `Bearer ${getToken()}` }
+    })
   }
 }

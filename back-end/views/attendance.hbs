@@ -1,0 +1,18 @@
+<form action="/attendance" method="POST">
+  <div class="mb-4 text-center">
+    <h1 class="h3 font-weight-normal mb-3">Create Attendance</h1>
+  </div>
+  <div class="form-row mb-3">
+    <label class="form-label" for="account">Account</label>
+    <input class="form-control" type="text" name="account" id="account" placeholder="Enter account" required>
+  </div>
+  <div class="form-row mb-3">
+    <label class="form-label" for="name">Name</label>
+    <input class="form-control" type="text" name="name" id="name" placeholder="Enter name" required>
+  </div>
+  <div class="form-row mb-3">
+    <label class="form-label" for="description">Description</label>
+    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
