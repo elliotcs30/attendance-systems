@@ -4,6 +4,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import NotFound from '../views/NotFound.vue'
 import SignIn from '../views/SignIn.vue'
 import Attendances from '../views/Attendances.vue'
+import store from './../store'
 
 const routes = [
   {
@@ -62,6 +63,14 @@ const router = createRouter({
   history: createWebHashHistory(),
   linkExactActiveClass: 'active', // 當前選擇的頁籤
   routes
+})
+
+// to: 使用者要去哪個路由, from: 使用者來自哪個路由
+router.beforeEach((to, from, next) => {
+  // 使用 dispatch(分發、指派) call Vuex 內的 actions
+  // 路由收到 request 之後, 指派其他元件執行特定工作
+  store.dispatch('fetchCurrentUser')
+  next()
 })
 
 export default router

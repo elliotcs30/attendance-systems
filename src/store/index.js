@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import userAPI from './../apis/users'
 
 export default createStore({
   state: {
@@ -30,6 +31,26 @@ export default createStore({
   },
   actions: {
     // 設定其他的非同步函式，例如發送 API 請求等等
+    // 在 actions 中可以透過參數的方式取得 commit 的方法
+    async fetchCurrentUser ({ commit }) {
+      try {
+        // call usersAPI.getCurrentUser() 方法, 並將 response 顯示出來
+        const { data } = await userAPI.getCurrentUser()
+        const { id, name, email, description, image, isAdmin } = data
+
+        commit('setCurrentUser', {
+          id,
+          name,
+          email,
+          description,
+          image,
+          isAdmin
+        })
+      } catch (err) { 
+        console.error('can not fetch user information')
+        console.error(err.message)
+      }
+    }
   },
   modules: {
   }
