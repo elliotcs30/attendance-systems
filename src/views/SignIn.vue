@@ -110,6 +110,10 @@ export default {
 
         // 將 token 存放在 localStorage 內
         localStorage.setItem('token', data.data.token)
+
+        // 將資料傳到 Vuex 中
+        this.$store.commit('setCurrentUser', data.data.token)
+
         // 若不使用 JSON.stringify() 會得到[object, object]
         // 所以要先把資料轉為 JSON 格式的字串
         localStorage.setItem('userInfo', JSON.stringify(userInfo))

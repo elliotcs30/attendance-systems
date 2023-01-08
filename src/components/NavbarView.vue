@@ -56,40 +56,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { Toast } from './../utils/helpers'
 
-// seed data
-const dummyUser = {
-  currentUser: JSON.parse(localStorage.getItem('userInfo')),
-  isAuthenticated: true
-}
-
 export default {
-  // Vue 會在沒有資料時使用此預設值
-  data () {
-    return {
-      currentUser: {
-        id: -1,
-        account: '',
-        name: '',
-        email: '',
-        image: '',
-        isAdmin: false
-      },
-      isAuthenticated: false
-    }
-  },
-  created () {
-    this.fetchUser()
+  computed: {
+    ...mapState(['currentUser', 'isAuthenticated'])
   },
   methods: {
-    fetchUser () {
-      this.currentUser = {
-        ...this.currentUser,
-        ...dummyUser.currentUser
-      }
-      this.isAuthenticated = dummyUser.isAuthenticated
-    },
     logout() {
       if (localStorage.getItem('token') === null) {
         // 顯示警告提示
