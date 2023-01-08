@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 // 若每個使用者都會進入的頁面，一開始就載入該頁面
 import NotFound from '../views/NotFound.vue'
 import SignIn from '../views/SignIn.vue'
-import AttendancesList from '../views/AttendancesList.vue'
+import Attendances from '../views/Attendances.vue'
 
 const routes = [
   {
@@ -24,12 +24,12 @@ const routes = [
   {
     path: '/attendances',
     name: 'attendances',
-    component: AttendancesList   
+    component: Attendances
   },
   {
-    path: '/attendances/feeds',
-    name: 'attendances-feeds',
-    component: () => import('../views/AttendancesFeeds.vue')
+    path: '/attendance',
+    name: 'attendance',
+    component: () => import('../views/Attendance.vue')
   },
   {
     path: '/admin/signin',

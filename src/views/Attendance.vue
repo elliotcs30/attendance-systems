@@ -2,6 +2,7 @@
   <div class="container py-5">
     <!-- 使用 NavTabs 元件 -->
     <NavTabs />
+
     <h1 class="mt-5">
       首頁 - 出勤打卡頁面
     </h1>
@@ -31,10 +32,11 @@
       type="button"
       class="btn btn-warning"
       style="margin-top: 20px;"
-      v-on:click="addAttendanceRecord"
+      v-on:click="addAttendanceRecord()"
     >
       上班打卡
     </button>
+
   </div>
 </template>
 
@@ -44,6 +46,9 @@ import { computed, ref, onMounted, watch } from 'vue'
 import { useGeolocation } from './../useGeolocation'
 import { Loader } from '@googlemaps/js-api-loader'
 const GOOGLE_MAPS_API_KEY = process.env.VUE_APP_Google_Maps_API_Key
+import authorizationAPI from './../apis/authorization'
+import { Toast } from './../utils/helpers'
+
 export default {
   name: 'App',
   setup() {
@@ -103,6 +108,62 @@ export default {
   },
   components: {
     NavTabs
+  },
+  data() {
+    return { // component 需要使用 function return 來回傳資料
+      account: '',
+      name: '',
+      work_hours: '',
+      created_at: '', 
+      updated_at: '',
+      isProcessing: false
+    }
+  },
+
+  methods: {
+    async addAttendanceRecord() {
+      try {
+        // 使用 authorizationAPI 的 signIn 方法
+        // 並且帶入使用者填寫的 account 和 password
+        const response = await authorizationAPI.Attendance({
+          account: this.account,
+          name: this.name,
+        })
+
+        // TODO: 取得 API 請求後的資料
+        const { data } = response
+
+        if (data.status !== 'success') {
+          throw new Error(data.message)
+        }
+
+        // 顯示成功提示
+        Toast.fire({
+          icon: 'success',
+          title: '打卡成功'
+        })
+
+      } catch (error) {
+        // 將欄位清空
+        this.account = ''
+        this.name = ''
+        this.tel = ''
+        this.email = ''
+        this.password = ''
+        this.passwordCheck = ''
+        this.description = ''
+        this.image = ''
+
+        // 顯示錯誤提示
+        Toast.fire({
+          icon: 'warning',
+          title: '請確認account、password 和 email 欄位是否有填寫！'
+        })
+
+        // 因為註冊失敗，所以要把按鈕狀態還原
+        this.isProcessing = false
+      }
+    }
   }
 }
 </script>

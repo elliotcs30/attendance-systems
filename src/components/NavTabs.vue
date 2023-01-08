@@ -24,12 +24,12 @@ export default {
         {
           id: uuidv4(),
           title: '首頁',
-          path: '/attendances'
+          path: '/attendance'
         },
         {
           id: uuidv4(),
-          title: '最新打卡紀錄',
-          path: '/attendances/feeds'
+          title: '打卡紀錄',
+          path: '/attendances'
         },
         {
           id: uuidv4(),
