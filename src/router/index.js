@@ -23,6 +23,11 @@ const routes = [
     component: () => import('../views/SignUp.vue') // 動態載入: 若每個使用者不一定會進入的頁面，可以設為動態載入
   },
   {
+    path: '/users',
+    name: 'users',
+    component: () => import('../views/Users.vue')
+  },
+  {
     path: '/attendances',
     name: 'attendances',
     component: Attendances
