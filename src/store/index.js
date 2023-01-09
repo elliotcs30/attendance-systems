@@ -8,6 +8,7 @@ export default createStore({
     // state 是專門放資料的，如果想要更新 state 裡的資料，要呼叫 mutations 裡的函式
     currentUser: {
       id: -1,
+      account: '',
       name: '',
       email: '',
       image: '',
@@ -46,10 +47,11 @@ export default createStore({
       try {
         // call usersAPI.getCurrentUser() 方法, 並將 response 顯示出來
         const { data } = await usersAPI.getCurrentUser()
-        const { id, name, email, description, image, isAdmin } = data
+        const { id, account, name, email, description, image, isAdmin } = data
 
         commit('setCurrentUser', {
           id,
+          account,
           name,
           email,
           description,
