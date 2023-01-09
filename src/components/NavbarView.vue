@@ -45,7 +45,7 @@
           <button
             type="button"
             class="btn btn-sm btn-outline-success my-2 my-sm-0"
-            @click="logout()"
+            @click="logout"
           >
             登出
           </button>
@@ -76,16 +76,14 @@ export default {
       }
 
       // 清除資料
-      localStorage.clear()
+      this.$store.commit('revokeAuthentication')
+      this.$router.push('/signin')
 
       // 顯示成功提示
       Toast.fire({
         icon: 'success',
         title: '已登出系統',
       })
-
-      // 成功登入後轉址到打卡首頁
-      this.$router.push('/signin')
     }
   }
 }
