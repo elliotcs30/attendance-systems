@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
-const baseURL = 'https://titan-elliot-as.herokuapp.com/api'
+const baseURL = 'https://titan-elliot-as1120109.herokuapp.com/api'
 // const baseURL = 'http://localhost:3000/api'
 
 export const apiHelper = axios.create({
