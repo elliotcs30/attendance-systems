@@ -19,6 +19,7 @@ router.post('/signup', userController.signUp)
 
 router.get('/logout', userController.logout)
 router.get('/users', userController.getUsers)
+router.get('/get_current_user', authenticated, userController.getCurrentUser)
 router.use('/', apiErrorHandler)
 
 module.exports = router

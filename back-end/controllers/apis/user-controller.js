@@ -66,6 +66,16 @@ const userController = {
   },
   getUsers: (req, res, next) => {
     userServices.getUsers(req, (err, data) => err ? next(err) : res.json(data))
+  },
+  getCurrentUser: (req, res, next) => {
+    try {
+      const userData = req.body
+
+      res.json({
+        status: 'success',
+        data: userData
+      }) // 顯示成功訊息
+    } catch (err) { next(err) } // 接住前面拋出的錯誤，呼叫專門做錯誤處理的 middleware
   }
 }
 
