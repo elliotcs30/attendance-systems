@@ -20,9 +20,7 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Staff Account</th>
-                  <th scope="col">Staff Name</th>
                   <th scope="col">Staff Email</th>
-                  <th scopr="col">Staff Description</th>
                   <th scope="col">Staff Created At time</th>
                   <th scope="col">Staff Updated At time</th>
                 </tr>
@@ -31,9 +29,7 @@
                 <tr v-for="(user, index) in users" :key="user.id" :index="index++">
                   <th scope="row">{{ index }}</th>
                   <td>{{ user.account }}</td>
-                  <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
-                  <td>{{ user.description }}</td>
                   <td>{{ user.createdAt }}</td>
                   <td>{{ user.updatedAt }}</td>
                 </tr>
