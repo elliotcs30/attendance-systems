@@ -91,8 +91,6 @@ export default {
           // categoryId: queryCategoryId
         })
 
-        console.log('fetchAttendances', response.data.attendances )
-
         const {
           attendances,
           // categories,
