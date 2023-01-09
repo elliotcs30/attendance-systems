@@ -23,7 +23,7 @@ export default {
       tabs: [
         {
           id: uuidv4(),
-          title: '首頁',
+          title: '打卡首頁',
           path: '/attendance'
         },
         {
