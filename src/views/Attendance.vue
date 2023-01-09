@@ -55,7 +55,6 @@ import { useGeolocation } from './../useGeolocation'
 import { Loader } from '@googlemaps/js-api-loader'
 const GOOGLE_MAPS_API_KEY = process.env.VUE_APP_Google_Maps_API_Key
 import attendancesAPI from './../apis/attendances'
-import { mapState } from 'vuex'
 import { Toast } from './../utils/helpers'
 
 export default {
@@ -128,9 +127,6 @@ export default {
         isProcessing: false
       },
     }
-  },
-  computed: {
-    ...mapState(['currentUser'])
   },
   methods: {
     // 改用 async/await 語法

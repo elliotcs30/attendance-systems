@@ -10,7 +10,7 @@
     <div class="row">
       <!-- 打卡列表 AttendanceTable -->
       <div class="col-md-12">
-        <!-- 最新打卡 NewestAttendances -->
+        <!-- 最新打卡 Attendances -->
         <div class="card">
           <div class="card-header">
             Attendance records
