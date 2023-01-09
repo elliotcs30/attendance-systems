@@ -48,7 +48,7 @@
         Submit
       </button>
 
-      <div class="text-center mb-3">
+      <!-- <div class="text-center mb-3">
         <p>
           <router-link to="/signup">
             Sign Up
@@ -58,7 +58,7 @@
             Admin Sign In
           </router-link>
         </p>
-      </div>
+      </div> -->
 
       <p class="mt-5 mb-3 text-muted text-center">
         &copy; 2022-2023
@@ -104,9 +104,7 @@ export default {
         const { data } = response
         const userInfo = data.data.user
 
-        if (data.status !== 'success') {
-          throw new Error(data.message)
-        }
+        if (data.status !== 'success') throw new Error(data.message)
 
         // 將 token 存放在 localStorage 內
         localStorage.setItem('token', data.data.token)
@@ -131,7 +129,7 @@ export default {
         this.account = ''
         this.password = ''
 
-        // 顯示錯誤提示
+        // 顯示警告提示
         Toast.fire({
           icon: 'warning',
           title: '請確認您輸入的帳號或密碼'

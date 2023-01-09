@@ -172,12 +172,18 @@ export default {
         if (!this.account || !this.password || !this.email) {
           Toast.fire({
             icon: 'warning',
-            title: '請填入 account、password 和 email'
+            title: '請填入帳號、密碼和電子郵件!'
           })
           return
         }
-        this.isProcessing = true
-
+        if (this.password !== this.passwordCheck) {
+          Toast.fire({
+            icon: 'warning',
+            title: '輸入密碼不相符，請確認後再試!'
+          })
+          return
+        }
+        
         // 使用 authorizationAPI 的 signIn 方法
         // 並且帶入使用者填寫的 account 和 password
         const response = await authorizationAPI.signUp({
@@ -195,15 +201,16 @@ export default {
         // TODO: 取得 API 請求後的資料
         const { data } = response
 
-        if (data.status !== 'success') {
+        if (data.status === 'error') {
           throw new Error(data.message)
         }
-
+        
         // 顯示成功提示
         Toast.fire({
           icon: 'success',
           title: '註冊成功'
         })
+        this.isProcessing = true
         
         // 成功登入後轉址到打卡首頁
         this.$router.push('/signin')
@@ -220,8 +227,8 @@ export default {
 
         // 顯示錯誤提示
         Toast.fire({
-          icon: 'warning',
-          title: '請確認account、password 和 email 欄位是否有填寫！'
+          icon: 'error',
+          title: error.message
         })
 
         // 因為註冊失敗，所以要把按鈕狀態還原
