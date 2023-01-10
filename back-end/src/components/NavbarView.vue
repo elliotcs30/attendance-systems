@@ -56,26 +56,10 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-import { mapState, useStore } from 'vuex';
-import { Toast } from 'bootstrap';
-// import { useRouter } from 'vue-router';
+import { mapState } from 'vuex'
+import { Toast } from './../utils/helpers'
 
 export default {
-  setup() {
-
-    // const router = useRouter();
-    const store = useStore();
-    const storeState = mapState(['currentUser', 'isAuthenticated']);
-    const resultStoreState = {};
-    Object.keys(storeState).map((item) => {
-      const resFuc = storeState[item];
-      resultStoreState[item] = computed(resFuc.bind({ $store: store }));
-    });
-
-    console.log(resultStoreState)
-
-  },
   computed: {
     ...mapState(['currentUser', 'isAuthenticated'])
   },
