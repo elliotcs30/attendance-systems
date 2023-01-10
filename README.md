@@ -85,13 +85,19 @@ Setting MySQL [reference](https://siddharam.com.tw/post/20190807/)
 2. Install the required dependencies
 
 ```shell
+  $ cd attendance-systems
+  $ npm install
+  $ cd attendance-systems/back-end
   $ npm install
 ```
 
 3. Set environment variables in .env file according to .env.example
 
 ```shell
-  touch .env
+  $ cd /attendance-systems
+  $ touch .env
+  $ cd /attendance-systems/back-end
+  $ touch .env
 ```
 
 4. Seed create your database
@@ -111,6 +117,7 @@ Setting MySQL [reference](https://siddharam.com.tw/post/20190807/)
 6. Start the back end server
 
 ```shell
+  $ cd attendance-systems/back-end
   $ npm run start         // for mac
   $ npm run start-windows // for windows
 ```
