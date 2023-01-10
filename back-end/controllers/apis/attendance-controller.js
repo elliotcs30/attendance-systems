@@ -1,9 +1,9 @@
 const attendanceServices = require('../../services/attendance-services')
-const { Attendance } = require('./../../models')
+const { Attendance } = require('../../models')
 
 const attendanceController = {
   getAttendances: (req, res, next) => {
-    attendanceServices.getAttendances(req, (err, data) => err ? next(err) : res.render('attendances', data))
+    attendanceServices.getAttendances(req, (err, data) => err ? next(err) : res.json(data))
   },
   getAttendance: (req, res, next) => {
     return res.render('attendance')
@@ -11,7 +11,6 @@ const attendanceController = {
   postAttendance: (req, res, next) => {
     try {
       const { account, name, description } = req.body
-      console.log(req.body)
       if (!account) throw new Error('Attendance account is required!')
 
       Attendance.create({ // 產生一個新的 Attendance 物件實例，並存入資料庫
